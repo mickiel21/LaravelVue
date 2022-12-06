@@ -22,6 +22,9 @@ class LoginController extends Controller
                         'user' => $user,
                     ];
                     return resolveResponse(__('auth.login_success'), $response, 200);
+                }elseif($user->role_id == 2){
+                    $response = "You don't have permission to access here";
+                    return rejectResponse(__('auth.failed'), $response, 401);
                 } else {
                     $response = "Email or Password mismatch";
                     return rejectResponse(__('auth.mismatch_password'), $response, 401);

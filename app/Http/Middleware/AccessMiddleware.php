@@ -21,7 +21,7 @@ class AccessMiddleware
         $route_name = Route::getCurrentRoute()->getName();
       
         $exceptions = [
-           
+           'register'
         ];
         
         if(in_array($route_name, $exceptions)){
