@@ -25,10 +25,10 @@
           data-accordion="false"
         >
           <li class="nav-item">
-            <a href="user" class="nav-link">
+            <router-link to="/user" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Manage Clients</p>
-            </a>
+            </router-link>
           </li>
         </ul>
       </nav>

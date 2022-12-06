@@ -17,8 +17,9 @@
  
 
  import Login from './pages/auth/Login'
- import User from './pages/user/User.vue'
  import Signup from './pages/signup/Signup.vue'
+ import User from './pages/user/User.vue'
+ import UserForm from './pages/user/UserForm.vue'
 
  
  /**
@@ -56,8 +57,12 @@
  import VueRouter from "vue-router";
  const routes = [
     { path: "/login", component: Login },
-     { path: "/user", component: User },
-     { path: "/signup", component: Signup }
+     { path: "/signup", component: Signup },
+
+    { path: "/user", component: User },
+    { path: "/user/create", component: UserForm },
+    { path: "/user/edit/:id", component: UserForm, props: true },
+    { path: "/user/view/:id", component: UserForm, props: true },
     ];
  const router = new VueRouter({ mode: "history", routes: routes });
  

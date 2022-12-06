@@ -33,7 +33,7 @@ export default {
       destroy: "deleteUser",
     }),
     create() {
-      console.log("create client");
+      this.$router.push("/user/create");
     },
   },
   computed: {
