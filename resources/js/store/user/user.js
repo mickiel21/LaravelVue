@@ -14,7 +14,8 @@ const state = {
     ],
     users: [],
     user: {},
-    signup_user:{}
+    signup_user:{},
+    user_loading:false
 
 };
 

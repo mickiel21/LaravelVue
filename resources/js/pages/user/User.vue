@@ -8,6 +8,7 @@
         :items="users"
         :view="true"
         :remove="true"
+        :isBusy="user_loading"
       />
     </template>
   </BaseContainer>
@@ -37,7 +38,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["users", "user_fields"]),
+    ...mapGetters(["users", "user_fields", "user_loading"]),
   },
 
   mounted() {
