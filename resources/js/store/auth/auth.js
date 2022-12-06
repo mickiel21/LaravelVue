@@ -7,10 +7,7 @@ const state = {
 
 const mutations = {
     LOG_OUT() {
-        localStorage.removeItem("SUNTECH_USER");
-    },
-    LOG_OUT(state,data) {
-        state.auth_user = data.data;
+        localStorage.removeItem("SUNTEC_TOKEN");
     },
 
 };
@@ -28,7 +25,9 @@ const actions = {
         return data.data
     },
     async logout({ commit }) {
-        commit("LOG_OUT");
+        const { data } = await axios.post('/logout');
+        commit("LOG_OUT",data);
+        return data
     },
 };
 

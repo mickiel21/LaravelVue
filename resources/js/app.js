@@ -12,10 +12,13 @@
  import 'bootstrap-vue/dist/bootstrap-vue.css'
  
  import store from "./store/index";
+
+ import Vuelidate from 'vuelidate'
  
 
  import Login from './pages/auth/Login'
  import User from './pages/user/User.vue'
+ import Signup from './pages/signup/Signup.vue'
 
  
  /**
@@ -52,12 +55,14 @@
  // ROUTER
  import VueRouter from "vue-router";
  const routes = [
-     { path: "/login", component: Login },
-     { path: "/user", component: User }
+    { path: "/login", component: Login },
+     { path: "/user", component: User },
+     { path: "/signup", component: Signup }
     ];
  const router = new VueRouter({ mode: "history", routes: routes });
  
  Vue.use(VueRouter);
+ Vue.use(Vuelidate);
  import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
  // Make BootstrapVue available throughout your project
