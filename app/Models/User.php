@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->hasMany(ClientInterest::class,'user_id','id');
     }
 
-    public function children(){
+    public function clients(){
         return $this->hasMany(self::class,'created_by','id');
     }
     
