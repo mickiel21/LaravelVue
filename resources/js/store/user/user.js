@@ -14,6 +14,7 @@ const state = {
     ],
     users: [],
     user: {},
+    signup_user:{}
 
 };
 
@@ -59,6 +60,12 @@ const actions = {
         dispatch("getArchivedUsers");
         return data.message;
     },
+
+    async signUp({ commit}, payload) {
+        const { data } = await axios.post(`/register`, payload);
+        commit("SET_SIGN_UP_USER", data);
+        return data.message;
+    },
    
    
 };
@@ -86,6 +93,9 @@ const mutations = {
     SET_USER_LOADING(state, data) {
         state.user_loading = data;
     },
+    SET_SIGNUP_USER(state,data){
+        state.signup_user = data
+    }
 
 };
 
@@ -104,6 +114,9 @@ const getters = {
     },
     user_fields(state) {
         return state.user_fields;
+    },
+    signup_user(state) {
+        return state.signup_user;
     },
     
 

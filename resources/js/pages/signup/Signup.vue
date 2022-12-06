@@ -87,7 +87,7 @@
                 <button
                   class="btn btn-lg btn-primary btn-block text-uppercase"
                   type="button"
-                  @click="doLogin"
+                  @click="signup"
                 >
                   Save
                 </button>
@@ -153,8 +153,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["login"]),
-    doLogin() {
+    ...mapActions(["signUp"]),
+    signup() {
       this.$v.$touch();
       if (this.$v.$invalid) return;
       this.$swal({
@@ -164,24 +164,23 @@ export default {
         allowOutsideClick: false,
       });
 
-      this.login(this.user)
+      this.signUp(this.user)
         .then((response) => {
           console.log(response);
-          window.localStorage.setItem("SUNTEC_TOKEN", response.token);
 
           this.$swal({
-            title: "Login",
-            text: `Login Success, Welcome ${response.user.first_name}`,
+            title: "Sign Up",
+            text: `Signup Success`,
             icon: "success",
             showCloseButton: true,
             showCancelButton: false,
           });
-          window.location.href = "/user";
+          window.location.href = "/login";
         })
         .catch((error) => {
           console.log(error);
           this.$swal({
-            title: "Login",
+            title: "Sign Up",
             text: error.response.data.message,
             icon: "error",
             showCloseButton: true,
