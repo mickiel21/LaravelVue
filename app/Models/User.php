@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\ClientInterest;
 
 
 class User extends Authenticatable
@@ -25,6 +26,8 @@ class User extends Authenticatable
         'contact_no',
         'birthday',
         'role_id',
+        'created_by',
+        'updated_by'
     ];
 
     /**
@@ -41,7 +44,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
+    protected $casts = [    
         'email_verified_at' => 'datetime',
     ];
+
+    public function clientInterests(){
+        return $this->hasMany(ClientInterest::class,'user_id','id');
+    }
+
+    public function children(){
+        return $this->hasMany(self::class,'id','created_by')->with('children');
+    }
+    
 }

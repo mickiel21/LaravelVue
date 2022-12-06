@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('contact_no');
             $table->date('birthday');
             $table->integer('role_id')->unsigned()->nullable()->default(0);
+            $table->integer('created_by')->unsigned()->nullable()->default(0);
+            $table->integer('updated_by')->unsigned()->nullable()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
