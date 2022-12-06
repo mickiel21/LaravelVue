@@ -1,6 +1,12 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar>
+      <template v-slot:logout>
+        <span @click="logout" class="dropdown-item dropdown-header"
+          >Logout</span
+        >
+      </template>
+    </Navbar>
     <Sidebar />
 
     <div class="content-wrapper">
@@ -33,7 +39,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    logout() {
+      console.log("logout");
+    },
+  },
   computed: {},
 
   mounted() {},

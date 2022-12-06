@@ -21,7 +21,7 @@
             <i class="fa-solid fa-user fa-2xl"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">Logout</span>
+            <slot name="logout"></slot>
             <div class="dropdown-divider"></div>
           </div>
         </li>
