@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function children(){
-        return $this->hasMany(self::class,'id','created_by')->with('children');
+        return $this->hasMany(self::class,'created_by','id');
     }
     
 }

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
   
     public function index() {
-        $users = User::with([])->paginate(5);
+        $users = User::with(['children'])->paginate(5);
         return resolveResponse(__('client.fetch_success'), $users);
     }
 
