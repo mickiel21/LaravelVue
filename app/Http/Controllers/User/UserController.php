@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Requests\User\UserRequest;
 
 class UserController extends Controller
 {
@@ -25,7 +25,8 @@ class UserController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(UserRequest $request) {
+        return $request->all();
         \DB::beginTransaction();
         try {
            $user = User::create([
@@ -36,6 +37,7 @@ class UserController extends Controller
                 'contact_number' => $request->contact_number,
                 'birthday' => $request->birthday,
                 'role_id' => 2, 
+                'created_by' => \Auth::user()->id,
             ]);
             \DB::commit();
             return resolveResponse(__('client.create_success'),$user);
@@ -45,7 +47,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(UserRequest $request, $id) {
         \DB::beginTransaction();
         try {
            $user = User::findOrFail($id);
@@ -57,6 +59,7 @@ class UserController extends Controller
                 'contact_number' => $request->contact_number,
                 'birthday' => $request->birthday,
                 'role_id' => 2, 
+                'updated_by' => \Auth::user()->id
             ]);
             \DB::commit();
             return resolveResponse(__('client.update_success'),$user);
