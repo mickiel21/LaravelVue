@@ -74,8 +74,7 @@
 
       <template v-slot:table-busy>
         <div class="text-center text-danger my-2">
-          <b-spinner class="align-middle"></b-spinner>
-          <strong>Loading...</strong>
+          <b-spinner variant="success" type="grow" label="Spinning"></b-spinner>
         </div>
       </template>
     </b-table>
