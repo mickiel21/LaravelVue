@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+// Route::get('/{any}', 'Auth\LoginController@any')->where('any', '.*');
 Route::get('/{any}', function () {
     return view('master');
-})->where('any', '.*');
-
+});

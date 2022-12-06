@@ -3,7 +3,12 @@
     Manage Client
     <template v-slot:table>
       <add-button buttonText="Add New Client" @create="create" />
-      <DataTable :fields="users" />
+      <DataTable
+        :fields="user_fields"
+        :items="users"
+        :view="true"
+        :remove="true"
+      />
     </template>
   </BaseContainer>
 </template>
@@ -16,20 +21,28 @@ export default {
   name: "",
   props: {},
   data() {
-    return {};
+    return {
+      mode: "CREATE",
+    };
   },
   methods: {
     ...mapActions({
-      create() {
-        console.log("create client");
-      },
+      store: "createUser",
+      update: "updateUser",
+      index: "getUsers",
+      destroy: "deleteUser",
     }),
+    create() {
+      console.log("create client");
+    },
   },
   computed: {
-    ...mapGetters(["users"]),
+    ...mapGetters(["users", "user_fields"]),
   },
 
-  mounted() {},
+  mounted() {
+    this.index();
+  },
 };
 </script>
 

@@ -11,7 +11,9 @@ use App\Http\Requests\Auth\LoginRequest;
 
 class LoginController extends Controller
 {
-  
+    public function any(){
+        return view('master');
+    }
     public function login(LoginRequest $request) {
         $user = User::where('email', $request->email)->first();
         if($user->role_id == 2){

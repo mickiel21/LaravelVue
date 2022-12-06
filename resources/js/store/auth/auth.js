@@ -2,7 +2,7 @@ import axios from "../axios";
 
 const state = {
     is_authenticated: false,
-    user: {}
+    auth_user: {}
 };
 
 const mutations = {
@@ -10,14 +10,14 @@ const mutations = {
         localStorage.removeItem("SUNTECH_USER");
     },
     LOG_OUT(state,data) {
-        state.user = data.data;
+        state.auth_user = data.data;
     },
 
 };
 
 const getters = {
-    user(state) {
-        return state.user;
+    auth_user(state) {
+        return state.auth_user;
     },
 };
 

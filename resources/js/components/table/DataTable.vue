@@ -5,7 +5,7 @@
         <span class="pr-2"> {{ notice }} </span>
       </b-col>
     </b-row>
-    <b-row class="mb-3" v-if="search">
+    <!-- <b-row class="mb-3" v-if="search">
       <b-col class="form-inline">
         <span class="pr-2">Display </span>
         <b-form-select
@@ -35,7 +35,7 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-    </b-row>
+    </b-row> -->
     <b-table
       hover
       :items="items.data"
@@ -80,7 +80,7 @@
       </template>
     </b-table>
 
-    <div class="d-flex justify-content-between align-items-center">
+    <!-- <div class="d-flex justify-content-between align-items-center">
       <p class="mt-3">
         Showing {{ items.from || 0 }} to {{ items.to || 0 }} of
         {{ items.total || 0 }} entries
@@ -94,7 +94,7 @@
         hide-goto-end-buttons
         @input="$emit('refresh', form)"
       ></b-pagination>
-    </div>
+    </div> -->
   </div>
 </template>
 

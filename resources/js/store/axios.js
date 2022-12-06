@@ -4,7 +4,7 @@ const axiosRequest = axios.create({
     baseURL: "/api/v1/",
     timeout: 20000,
     headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("STB_TOKEN")}`,
+        Authorization: `Bearer ${window.localStorage.getItem("SUNTEC_TOKEN")}`,
     }
 });
 

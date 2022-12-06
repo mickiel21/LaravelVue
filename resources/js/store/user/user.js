@@ -1,14 +1,14 @@
 const baseURL = "/user";
-
+import axios from "../axios";
 const apiResource = {
     index: "getUsers"
 };
 const state = {
-    users:[
+    user_fields:[
         { key: "id", label: "No" },
         { key: "first_name", label: "Name" },
-        { key: "email_address", label: "Email" },
-        { key: "contact_no", label: "Contact No" },
+        { key: "email", label: "Email" },
+        { key: "contact_number", label: "Contact No" },
         { key: "birthday", label: "Birthday" },
         { key: "actions", label: "ACTION" }
     ],
@@ -26,12 +26,12 @@ const actions = {
                 commit("SET_USER_LOADING", false);
                 return data;
             });
-        commit("GET_USER", data);
+        commit("SET_GET_USERS", data);
     },
     async getUser({ commit, dispatch }, payload) {
         const { data } = await axios.get(`${baseURL}/user/${payload}`);
         dispatch("getUsers");
-        commit("SET_GET_USERS", data);
+        commit("GET_USER", data);
         return data;
     },
     async createUser({ commit,dispatch }, payload) {
@@ -65,10 +65,10 @@ const actions = {
 
 const mutations = {
     SET_GET_USERS(state, data) {
-        state.user = data.data;
+        state.users = data.data;
     },
     GET_USER(state, data) {
-        state.users = data.data;
+        state.user = data.data;
     },
     SET_SAVE_USER(state, data) {
         state.user = data;
@@ -101,6 +101,9 @@ const getters = {
     },
     user_loading(state) {
         return state.user_loading;
+    },
+    user_fields(state) {
+        return state.user_fields;
     },
     
 
