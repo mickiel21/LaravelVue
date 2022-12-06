@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "add-button",
+  name: "AddButton",
   props: {
     variant: {
       type: String,

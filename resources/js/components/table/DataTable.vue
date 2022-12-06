@@ -102,7 +102,7 @@
 import _ from "lodash";
 
 export default {
-  name: "data_table",
+  name: "DataTable",
   props: {
     items: {
       type: [Object, Array],

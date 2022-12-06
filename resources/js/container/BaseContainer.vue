@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NewSidebar />
+    <Navbar />
     <Sidebar />
 
     <div class="content-wrapper">
@@ -27,11 +27,8 @@
 
 
 <script>
-import NewSidebar from "../components/layouts/Navbar";
-import Sidebar from "../components/layouts/Sidebar";
 export default {
   name: "",
-  components: { NewSidebar, Sidebar },
   props: {},
   data() {
     return {};

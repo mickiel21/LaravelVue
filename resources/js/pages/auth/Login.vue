@@ -13,7 +13,7 @@
                     type="email"
                     id="inputEmail"
                     class="form-control"
-                    placeholder="Username"
+                    placeholder="Email"
                     v-model="user.email"
                     required
                     autofocus
@@ -69,7 +69,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Login",
   computed: {
-    ...mapGetters(["is_login_loading"]),
+    ...mapGetters([""]),
   },
   data() {
     return {
@@ -92,11 +92,12 @@ export default {
 
       this.login(this.user)
         .then((response) => {
-          window.localStorage.setItem("SUNTEC_TOKEN", response.data.token);
+          console.log(response);
+          window.localStorage.setItem("SUNTEC_TOKEN", response.token);
 
           this.$swal({
             title: "Login",
-            text: `Login Success, Welcome ${response.data.user.first_name}`,
+            text: `Login Success, Welcome ${response.user.first_name}`,
             icon: "success",
             showCloseButton: true,
             showCancelButton: false,

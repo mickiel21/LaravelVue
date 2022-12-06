@@ -15,6 +15,7 @@
  
 
  import Login from './pages/auth/Login'
+ import User from './pages/user/User.vue'
 
  
  /**
@@ -27,12 +28,21 @@
  
  // const files = require.context('./', true, /\.vue$/i)
  // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+ import App from  './container/App'
+ import BaseContainer from './container/BaseContainer'
+ import AddButton from './components/layouts/AddButton'
+ import Navbar from './components/layouts/Navbar'
+ import Sidebar from './components/layouts/Sidebar'
+ import LoginContainer from './container/LoginContainer'
+ import DataTable from './components/table/DataTable'
 
- Vue.component('App', require('./container/App.vue').default);
- Vue.component("AddButton", require('./components/layouts/AddButton').default);
- Vue.component("NavBar", require('./components/layouts/NavBar').default);
- Vue.component("SideBar", require('./components/layouts/SideBar').default);
- Vue.component("LoginContainer", require('./container/LoginContainer').default);
+ Vue.component('App', App);
+ Vue.component('BaseContainer',BaseContainer );
+ Vue.component("AddButton",AddButton );
+ Vue.component("Navbar",Navbar );
+ Vue.component("Sidebar",Sidebar );
+ Vue.component("LoginContainer",LoginContainer );
+ Vue.component("DataTable",DataTable );
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to
@@ -43,7 +53,8 @@
  import VueRouter from "vue-router";
  const routes = [
      { path: "/login", component: Login },
- ];
+     { path: "/user", component: User }
+    ];
  const router = new VueRouter({ mode: "history", routes: routes });
  
  Vue.use(VueRouter);

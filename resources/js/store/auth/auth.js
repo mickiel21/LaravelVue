@@ -2,28 +2,30 @@ import axios from "../axios";
 
 const state = {
     is_authenticated: false,
-    login_loading: false,
+    user: {}
 };
 
 const mutations = {
-    SET_LOGIN_LOADING(state, data) {
-        state.login_loading = data;
-    },
     LOG_OUT() {
         localStorage.removeItem("SUNTECH_USER");
     },
+    LOG_OUT(state,data) {
+        state.user = data.data;
+    },
+
 };
 
 const getters = {
-    is_login_loading(state) {
-        return state.login_loading;
-    }
+    user(state) {
+        return state.user;
+    },
 };
 
 const actions = {
     async login({ commit }, payload) {
-        const val = axios.post("/login", payload);
-        return val;
+        const { data } = await axios.post('/login', payload);
+        commit("LOG_IN", data);
+        return data.data
     },
     async logout({ commit }) {
         commit("LOG_OUT");
