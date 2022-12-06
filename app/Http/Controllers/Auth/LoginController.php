@@ -14,6 +14,10 @@ class LoginController extends Controller
   
     public function login(LoginRequest $request) {
         $user = User::where('email', $request->email)->first();
+        if($user->role_id == 2){
+            $response = "You don't have permission to access here";
+            return rejectResponse(__('auth.failed'), $response, 401);
+        } 
         if($user){
                 if (Hash::check($request->password, $user->password)) {
                     $token = $user->createToken('Laravel Vue API Token')->accessToken;
@@ -22,10 +26,7 @@ class LoginController extends Controller
                         'user' => $user,
                     ];
                     return resolveResponse(__('auth.login_success'), $response, 200);
-                }elseif($user->role_id == 2){
-                    $response = "You don't have permission to access here";
-                    return rejectResponse(__('auth.failed'), $response, 401);
-                } else {
+                }else {
                     $response = "Email or Password mismatch";
                     return rejectResponse(__('auth.mismatch_password'), $response, 401);
                 }
