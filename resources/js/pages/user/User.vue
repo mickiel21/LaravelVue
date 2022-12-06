@@ -9,6 +9,9 @@
         :view="true"
         :remove="true"
         :isBusy="user_loading"
+        @remove="remove"
+        @view="view"
+        @update="update"
       />
     </template>
   </BaseContainer>
@@ -35,6 +38,15 @@ export default {
     }),
     create() {
       this.$router.push("/user/create");
+    },
+    view() {
+      console.log("view");
+    },
+    update() {
+      console.log("update");
+    },
+    remove() {
+      console.log("remove");
     },
   },
   computed: {
