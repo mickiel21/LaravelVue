@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
   
     public function login(LoginRequest $request) {
-        $user = User::where('email', $request->user_name)->first();
+        $user = User::where('email', $request->email)->first();
         if($user){
                 if (Hash::check($request->password, $user->password)) {
                     $token = $user->createToken('Laravel Vue API Token')->accessToken;
