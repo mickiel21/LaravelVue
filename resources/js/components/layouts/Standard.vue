@@ -1,5 +1,11 @@
 <template>
-  <BaseContainer> HEADER DATA </BaseContainer>
+  <BaseContainer>
+    HEADER DATA
+    <template v-slot:table>
+      <add-button buttonText="BUTTON TITLE" @create="create" />
+      <DataTable :fields="data_table_state" />
+    </template>
+  </BaseContainer>
 </template>
 
 
@@ -9,11 +15,11 @@ import BaseContainer from "../../container/BaseContainer.vue";
 import DataTable from "../components/table/DataTable.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "Standard",
+  name: "",
   components: { BaseContainer, DataTable },
   props: {},
   data() {
-    return { data_table_state: [] };
+    return {};
   },
   methods: {
     ...mapActions({}),

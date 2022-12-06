@@ -1,5 +1,11 @@
 <template>
-  <BaseContainer> Manage Client </BaseContainer>
+  <BaseContainer>
+    Manage Client
+    <template v-slot:table>
+      <add-button buttonText="Add New Client" @create="create" />
+      <DataTable :fields="users" />
+    </template>
+  </BaseContainer>
 </template>
 
 
@@ -13,10 +19,14 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      create() {
+        console.log("create client");
+      },
+    }),
   },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters(["users"]),
   },
 
   mounted() {},
