@@ -16,6 +16,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    //API
+    protected $api_auth_namespace = 'App\Http\Controllers\Auth';
+    protected $api_user_namespace = 'App\Http\Controllers\User';
+
     /**
      * The path to the "home" route for your application.
      *
@@ -42,9 +46,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        // $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        $this->mapApiAuthRoutes();
+        $this->mapApiUserRoutes();
 
         //
     }
@@ -77,4 +83,22 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+      // AUTH
+      protected function mapApiAuthRoutes()
+      {
+          Route::prefix('api/v1')
+              ->middleware('api')
+              ->namespace($this->api_auth_namespace)
+              ->group(base_path('routes/api/v1/auth/auth.php'));
+      }
+
+       // USER
+       protected function mapApiUserRoutes()
+       {
+           Route::prefix('api/v1')
+               ->middleware('api')
+               ->namespace($this->api_user_namespace)
+               ->group(base_path('routes/api/v1/user/user.php'));
+       }
 }
