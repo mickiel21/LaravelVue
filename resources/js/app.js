@@ -6,7 +6,7 @@
 
  require('./bootstrap');
 
- window.Vue = require('vue').default;
+ import Vue from 'vue';
  
  import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
  import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -27,11 +27,12 @@
  
  // const files = require.context('./', true, /\.vue$/i)
  // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
- 
+
  Vue.component('App', require('./container/App.vue').default);
- Vue.component("add-button", require('./components/layouts/AddButton'));
- Vue.component("nav-bar", require('./components/layouts/NavBar'));
- Vue.component("side-bar", require('./components/layouts/SideBar'));
+ Vue.component("AddButton", require('./components/layouts/AddButton').default);
+ Vue.component("NavBar", require('./components/layouts/NavBar').default);
+ Vue.component("SideBar", require('./components/layouts/SideBar').default);
+ Vue.component("LoginContainer", require('./container/LoginContainer').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to
@@ -46,9 +47,19 @@
  const router = new VueRouter({ mode: "history", routes: routes });
  
  Vue.use(VueRouter);
+ import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
  // Make BootstrapVue available throughout your project
  Vue.use(BootstrapVue)
+ 
+ const options = {
+    confirmButtonColor: "#118442",
+    cancelButtonColor: "#921806"
+};
+ Vue.use(VueSweetalert2, options);
  // Optionally install the BootstrapVue icon components plugin
+
+
  Vue.use(IconsPlugin)
  const app = new Vue({
      el: '#app',
