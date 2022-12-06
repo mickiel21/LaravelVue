@@ -66,6 +66,7 @@ const actions = {
         commit("SET_SIGN_UP_USER", data);
         return data.message;
     },
+
    
    
 };

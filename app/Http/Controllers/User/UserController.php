@@ -11,9 +11,14 @@ use App\Http\Requests\User\UserRequest;
 class UserController extends Controller
 {
   
+
     public function index() {
-        $users = User::with(['clients','clientInterests'])->paginate(5);
-        return resolveResponse(__('client.fetch_success'), $users);
+
+        $userClient = User::with(['clients'])->where('created_by',1)->paginate(5);
+        return resolveResponse(__('client.fetch_success'), $userClient);
+
+        // $users = User::with(['clients','clientInterests'])->paginate(5);
+        // return resolveResponse(__('client.fetch_success'), $users);
     }
 
     public function show($id) {
