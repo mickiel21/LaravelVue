@@ -13,15 +13,15 @@ class UserController extends Controller
   
     public function index() {
         $users = User::with([])->paginate(5);
-        return resolveResponse(__('user.fetch_success'), $users);
+        return resolveResponse(__('client.fetch_success'), $users);
     }
 
     public function show($id) {
         try {
            $user = User::findOrFail($id);
-            return resolveResponse(__('user.fetch_success'),$user);
+            return resolveResponse(__('client.fetch_success'),$user);
         }catch(\Exception $e) {
-            return rejectResponse(__('user.fetch_failed'), null);
+            return rejectResponse(__('client.fetch_failed'), null);
         }
     }
 
@@ -29,13 +29,19 @@ class UserController extends Controller
         \DB::beginTransaction();
         try {
            $user = User::create([
-                
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'contact_number' => $request->contact_number,
+                'birthday' => $request->birthday,
+                'role_id' => 2, 
             ]);
             \DB::commit();
-            return resolveResponse(__('user.create_success'),$user);
+            return resolveResponse(__('client.create_success'),$user);
         }catch(\Exception $e) {
             \DB::rollback();
-            return rejectResponse(__('user.create_failed'), null);
+            return rejectResponse(__('client.create_failed'), null);
         }
     }
 
@@ -44,13 +50,19 @@ class UserController extends Controller
         try {
            $user = User::findOrFail($id);
            $user->update([
-               
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'contact_number' => $request->contact_number,
+                'birthday' => $request->birthday,
+                'role_id' => 2, 
             ]);
             \DB::commit();
-            return resolveResponse(__('user.update_success'),$user);
+            return resolveResponse(__('client.update_success'),$user);
         }catch(\Exception $e) {
             \DB::rollback();
-            return rejectResponse(__('user.update_failed'), null);
+            return rejectResponse(__('client.update_failed'), null);
         }
     }
 
@@ -60,10 +72,10 @@ class UserController extends Controller
            $user = User::findOrFail($id);
            $user->delete();
             \DB::commit();
-            return resolveResponse(__('user.delete_success'),$user);
+            return resolveResponse(__('client.delete_success'),$user);
         }catch(\Exception $e) {
             \DB::rollback();
-            return rejectResponse(__('user.delete_failed'), null);
+            return rejectResponse(__('client.delete_failed'), null);
         }
     }
 
@@ -73,10 +85,10 @@ class UserController extends Controller
            $user = User::onlyTrashed()->findOrFail($id);
            $user->restore();
             \DB::commit();
-            return resolveResponse(__('user.restore_success'),$user);
+            return resolveResponse(__('client.restore_success'),$user);
         }catch(\Exception $e) {
             \DB::rollback();
-            return rejectResponse(__('user.restore_failed'), null);
+            return rejectResponse(__('client.restore_failed'), null);
         }
     }
 }

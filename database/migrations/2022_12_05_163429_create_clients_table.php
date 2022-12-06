@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->date('birthday');
             $table->integer('interest_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
