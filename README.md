@@ -15,7 +15,11 @@ $ php artisan migrate
 $ php artisan passport:install
 $ cp .env.example .env  // setup environment file
 ```
+### Branch
 
+1. git checkout feature/frontend (updated branch)
+
+`docker`, we can use the docker-compose.yml to set things up by first, creating a `nginx/conf.d` and `nginx/certs` folders in the root directory
 ### Dependencies
 | Third Party Packages (Development) | Version | - | Third Party Packages | Version
 | ------ | ------ | -- | ------ | ------ |
