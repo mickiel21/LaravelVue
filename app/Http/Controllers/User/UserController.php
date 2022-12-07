@@ -74,6 +74,12 @@ class UserController extends Controller
                 'role_id' => 2, 
                 'updated_by' => \Auth::user()->id
             ]);
+
+            foreach($request->interests as $interest){
+                $user->clientInterests()->update([
+                    'interest_id' => $interest,
+                ]);
+            }
             \DB::commit();
             return resolveResponse(__('client.update_success'),$user);
         }catch(\Exception $e) {
