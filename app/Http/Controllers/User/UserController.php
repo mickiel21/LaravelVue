@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\User;
+use App\Models\ClientInterest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class UserController extends Controller
 
     public function index() {
 
-        $userClient = User::with(['clients'])->where('created_by',\Auth::user()->id,)->paginate(5);
+        $userClient = User::with(['clients','clientInterests'])->where('created_by',\Auth::user()->id,)->paginate(5);
         return resolveResponse(__('client.fetch_success'), $userClient);
 
         // $users = User::with(['clients','clientInterests'])->paginate(5);
@@ -30,7 +31,7 @@ class UserController extends Controller
         }
     }
 
-    public function store(UserRequest $request) {
+    public function store(Request $request) {
         \DB::beginTransaction();
         try {
            $user = User::create([
@@ -43,11 +44,19 @@ class UserController extends Controller
                 'role_id' => 2, 
                 'created_by' => \Auth::user()->id,
             ]);
+            
+            foreach($request->interests as $interest){
+                $user->clientInterests()->create([
+                    'interest_id' => $interest,
+                ]);
+            }
+           
+          
             \DB::commit();
             return resolveResponse(__('client.create_success'),$user);
         }catch(\Exception $e) {
             \DB::rollback();
-            return rejectResponse(__('client.create_failed'), null);
+            return rejectResponse(__('client.create_failed'), $e);
         }
     }
 
