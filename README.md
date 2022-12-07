@@ -10,6 +10,9 @@ $ git clone https://github.com/mickiel21/LaravelVue.git
 $ cd [folder_name]      // go to folder of cloned project
 $ npm install           // install node dependencies
 $ composer install      // install composer dependencies
+$ php artisan key:generate
+$ php artisan migrate
+$ php artisan passport:install
 $ cp .env.example .env  // setup environment file
 ```
 
