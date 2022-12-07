@@ -56,6 +56,8 @@
  // ROUTER
  import VueRouter from "vue-router";
  const routes = [
+    { path: "/", component: Login },
+    { path: "*", redirect: "/" }, //add page not found?
     { path: "/login", component: Login },
      { path: "/signup", component: Signup },
 
