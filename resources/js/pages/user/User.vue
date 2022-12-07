@@ -39,14 +39,45 @@ export default {
     create() {
       this.$router.push("/user/create");
     },
-    view() {
-      console.log("view");
+    view(data) {
+      this.$router.push(`/user/view/` + data.id);
     },
-    update() {
-      console.log("update");
+    edit(data) {
+      this.$router.push(`/user/edit/` + data.id);
     },
-    remove() {
-      console.log("remove");
+    remove(data) {
+      this.$swal({
+        title: "Delete",
+        text: `Do you really want to Delete User ${data.first_name}?`,
+        icon: "question",
+        showCloseButton: true,
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#3098D5",
+        cancelButtonColor: "#F4C014",
+      }).then((response) => {
+        if (response.value == true) {
+          this.destroy(data.id).then(
+            (response) => {
+              this.$swal({
+                title: "Success",
+                text: response,
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+            },
+            (errors) => {
+              this.$swal({
+                title: "Error",
+                text: errors.response.data.message,
+                icon: "error",
+                confirmButtonText: "OK",
+              });
+            }
+          );
+        }
+      });
     },
   },
   computed: {

@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         if(\Request::getMethod() == "POST"){
             return [
                 'email' => 'required|email|unique:users',  
-                'password'=> ['required', 
+                'password'=> ['sometimes', 
                                 'min:6', 
                                 'regex:/[a-z]/',      // must contain at least one lowercase letter
                                 'regex:/[A-Z]/',      // must contain at least one uppercase letter
@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
                 'last_name' => 'required',
                 'contact_number' => 'required|numeric|digits_between:7,11',
                 'birthday'  => 'required|date',
-                'role_id' => 'required'
+                'role_id' => 'required|sometimes'
             ];
         }else {
             return [

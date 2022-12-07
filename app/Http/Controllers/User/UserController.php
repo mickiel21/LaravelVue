@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index() {
 
-        $userClient = User::with(['clients'])->where('created_by',1)->paginate(5);
+        $userClient = User::with(['clients'])->where('created_by',\Auth::user()->id,)->paginate(5);
         return resolveResponse(__('client.fetch_success'), $userClient);
 
         // $users = User::with(['clients','clientInterests'])->paginate(5);
@@ -31,12 +31,11 @@ class UserController extends Controller
     }
 
     public function store(UserRequest $request) {
-        return $request->all();
         \DB::beginTransaction();
         try {
            $user = User::create([
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => $request->password ? bcrypt($request->password) : '',
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'contact_number' => $request->contact_number,
