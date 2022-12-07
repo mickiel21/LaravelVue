@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
             ];
         }else {
             return [
-                'email' => 'required|email|unique:users',  
+                'email' => 'required|email|unique:users,email,' . $request->id,
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'contact_number' => 'required|numeric|digits_between:7,11',

@@ -181,7 +181,7 @@ export default {
         showConfirmButton: false,
         allowOutsideClick: false,
       });
-      this.update(user)
+      this.update(this.user)
         .then((response) => {
           this.$swal({
             title: "Success",
@@ -230,7 +230,11 @@ export default {
       this.mode = "EDIT";
     }
     if (this.id) {
-      this.show(this.id);
+      this.show(this.id)
+        .then((response) => {
+          this.user = response.data;
+        })
+        .catch((error) => {});
     }
   },
 };

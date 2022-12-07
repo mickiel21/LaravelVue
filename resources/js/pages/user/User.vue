@@ -11,7 +11,8 @@
         :isBusy="user_loading"
         @remove="remove"
         @view="view"
-        @update="update"
+        @update="edit"
+        :updateText="editText"
       />
     </template>
   </BaseContainer>
@@ -27,6 +28,7 @@ export default {
   data() {
     return {
       mode: "CREATE",
+      editText: "Edit",
     };
   },
   methods: {

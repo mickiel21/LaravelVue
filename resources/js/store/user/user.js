@@ -31,7 +31,7 @@ const actions = {
         commit("SET_GET_USERS", data);
     },
     async getUser({ commit, dispatch }, payload) {
-        const { data } = await axios.get(`${baseURL}/user/${payload}`);
+        const { data } = await axios.get(`${baseURL}/${payload}`);
         dispatch("getUsers");
         commit("GET_USER", data);
         return data;
