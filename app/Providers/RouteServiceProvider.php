@@ -19,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
     //API
     protected $api_auth_namespace = 'App\Http\Controllers\Auth';
     protected $api_user_namespace = 'App\Http\Controllers\User';
+    protected $api_interest_namespace = 'App\Http\Controllers\Interest';
     protected $api_register_namespace = 'App\Http\Controllers\Auth';
 
     /**
@@ -53,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiAuthRoutes();
         $this->mapApiUserRoutes();
         $this->mapApiRegisterRoutes();
-
+        $this->mapApiInterestRoutes();
 
         //
     }
@@ -104,6 +105,15 @@ class RouteServiceProvider extends ServiceProvider
                ->namespace($this->api_user_namespace)
                ->group(base_path('routes/api/v1/user/user.php'));
        }
+
+        // INTESREST
+        protected function mapApiInterestRoutes()
+        {
+            Route::prefix('api/v1')
+                ->middleware('api')
+                ->namespace($this->api_interest_namespace)
+                ->group(base_path('routes/api/v1/interest/interest.php'));
+        }
 
        // REGISTER
        protected function mapApiRegisterRoutes()

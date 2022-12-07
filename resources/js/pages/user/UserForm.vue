@@ -70,6 +70,24 @@
         </b-col>
       </b-row>
       <br />
+      <b-form-group
+        label="Select the interest(s) of this client"
+        v-slot="{ ariaDescribedby }"
+      >
+        <b-form-checkbox-group
+          v-model="user.selected"
+          :options="interests"
+          :aria-describedby="ariaDescribedby"
+          name="flavour-2a"
+          value-field="id"
+          text-field="name"
+          stacked
+        ></b-form-checkbox-group>
+      </b-form-group>
+      <div>
+        Selected: <strong>{{ user.selected }}</strong>
+      </div>
+      <br />
       <b-button
         class="action-button submitButton"
         @click="save"
@@ -112,6 +130,7 @@ export default {
         last_name: "",
         contact_number: "",
         birthday: "",
+        selected: [],
       },
     };
   },
@@ -141,6 +160,7 @@ export default {
       update: "updateUser",
       show: "getUser",
       index: "getUsers",
+      interest_index: "getInterests",
     }),
 
     save() {
@@ -213,10 +233,12 @@ export default {
   computed: {
     ...mapGetters({
       users: "users",
+      interests: "interests",
     }),
   },
   mounted() {
     this.index();
+    this.interest_index();
     // this.allProductCategories();
     if (this.$route.path.includes("view")) {
       this.disabled = true;
