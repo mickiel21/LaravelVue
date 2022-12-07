@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function index() {
 
-        $userClient = User::with(['clients','clientInterests'])->where('created_by',\Auth::user()->id,)->paginate(5);
+        $userClient = User::with(['clients'])->where('created_by',\Auth::user()->id,)->paginate(5);
         return resolveResponse(__('client.fetch_success'), $userClient);
 
         // $users = User::with(['clients','clientInterests'])->paginate(5);
@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function show($id) {
         try {
-           $user = User::findOrFail($id);
+           $user = User::with('clientInterests')->findOrFail($id);
             return resolveResponse(__('client.fetch_success'),$user);
         }catch(\Exception $e) {
             return rejectResponse(__('client.fetch_failed'), null);
@@ -44,7 +44,7 @@ class UserController extends Controller
                 'role_id' => 2, 
                 'created_by' => \Auth::user()->id,
             ]);
-            
+
             foreach($request->interests as $interest){
                 $user->clientInterests()->create([
                     'interest_id' => $interest,

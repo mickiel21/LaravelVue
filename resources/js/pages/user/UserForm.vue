@@ -75,18 +75,17 @@
         v-slot="{ ariaDescribedby }"
       >
         <b-form-checkbox-group
-          v-model="user.selected"
+          v-model="user.interests"
           :options="interests"
           :aria-describedby="ariaDescribedby"
           name="flavour-2a"
           value-field="id"
           text-field="name"
+          :disabled="disabled"
           stacked
         ></b-form-checkbox-group>
       </b-form-group>
-      <div>
-        Selected: <strong>{{ user.selected }}</strong>
-      </div>
+
       <br />
       <b-button
         class="action-button submitButton"
@@ -130,7 +129,7 @@ export default {
         last_name: "",
         contact_number: "",
         birthday: "",
-        selected: [],
+        interests: [],
       },
     };
   },
@@ -255,6 +254,10 @@ export default {
       this.show(this.id)
         .then((response) => {
           this.user = response.data;
+          const interest = response.data.client_interests.map(function (obj) {
+            return obj.interest_id;
+          });
+          this.user.interests = interest;
         })
         .catch((error) => {});
     }
