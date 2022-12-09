@@ -10,16 +10,26 @@ $ git clone https://github.com/mickiel21/LaravelVue.git
 $ cd [folder_name]      // go to folder of cloned project
 $ npm install           // install node dependencies
 $ composer install      // install composer dependencies
-$ php artisan key:generate
-$ php artisan migrate
-$ php artisan passport:install
 $ cp .env.example .env  // setup environment file
 ```
 ### Branch
 
 1. git checkout feature/frontend (updated branch)
 
-`docker`, we can use the docker-compose.yml to set things up by first, creating a `nginx/conf.d` and `nginx/certs` folders in the root directory
+### Database Seeder , Factory and Passport
+
+1. php artisan migrate
+
+2. php artisan db:seed
+
+3. php artisan passport:install
+
+4. php artisan tinker and paste this command for auth user.  
+factory('App\Models\User',1)->create() or sign up to manualy add auth user. 
+
+
+
+
 ### Dependencies
 | Third Party Packages (Development) | Version | - | Third Party Packages | Version
 | ------ | ------ | -- | ------ | ------ |
