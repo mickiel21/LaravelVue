@@ -105,10 +105,9 @@ export default {
           window.location.href = "/user";
         })
         .catch((error) => {
-          console.log(error);
           this.$swal({
             title: "Login",
-            text: error.response.data.message,
+            text: error.message,
             icon: "error",
             showCloseButton: true,
             showCancelButton: false,

@@ -131,6 +131,7 @@ export default {
         birthday: "",
         interests: [],
       },
+      errors: "",
     };
   },
   validations: {
@@ -163,7 +164,8 @@ export default {
     }),
 
     save() {
-      console.log(this.user);
+      this.$v.$touch();
+      if (this.$v.$invalid) return;
       this.$swal({
         title: "Saving",
         html: '<img src="/images/loading.png" style="width: 8rem"/>',
@@ -182,10 +184,10 @@ export default {
           });
         })
         .catch((errors) => {
-          this.error(errors);
+          this.errors = errors.response.data.errors;
           this.$swal({
             title: "Error",
-            text: this.errors,
+            text: errors.message,
             icon: "error",
             confirmButtonText: "OK",
           });
@@ -212,10 +214,9 @@ export default {
           });
         })
         .catch((errors) => {
-          this.error(errors);
           this.$swal({
             title: "Error",
-            text: this.errors,
+            text: errors.response.data.errors,
             icon: "error",
             confirmButtonText: "OK",
           });
