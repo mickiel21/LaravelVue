@@ -31,7 +31,7 @@ class UserController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(UserRequest $request) {
         \DB::beginTransaction();
         try {
            $user = User::create([

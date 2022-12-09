@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
   /**
@@ -26,8 +26,6 @@ class UserRequest extends FormRequest
         if(\Request::getMethod() == "POST"){
             return [
                 'email' => 'required|email|unique:users',  
-                'password' => 'min:6|required_with:confirm_password|same:confirm_password',
-                'confirm_password' => 'min:6',
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'contact_number' => 'required|numeric|digits_between:7,11',
