@@ -106,7 +106,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import { required, sameAs } from "vuelidate/lib/validators";
 export default {
   name: "Signup",
   computed: {
@@ -134,9 +134,7 @@ export default {
       password: {
         required,
       },
-      confirm_password: {
-        required,
-      },
+      confirm_password: { required, sameAsPassword: sameAs("password") },
       first_name: {
         required,
       },
