@@ -106,7 +106,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import { required, sameAs } from "vuelidate/lib/validators";
 export default {
   name: "Signup",
   computed: {
@@ -134,9 +134,7 @@ export default {
       password: {
         required,
       },
-      confirm_password: {
-        required,
-      },
+      confirm_password: { required, sameAsPassword: sameAs("password") },
       first_name: {
         required,
       },
@@ -155,8 +153,6 @@ export default {
   methods: {
     ...mapActions(["signUp"]),
     signup() {
-      this.$v.$touch();
-      if (this.$v.$invalid) return;
       this.$swal({
         title: "Logging in...",
         html: '<img src="/images/loading.png" style="width: 8rem"/>',
@@ -178,10 +174,9 @@ export default {
           window.location.href = "/login";
         })
         .catch((error) => {
-          console.log(error);
           this.$swal({
             title: "Sign Up",
-            text: error.response.data.message,
+            text: error.message,
             icon: "error",
             showCloseButton: true,
             showCancelButton: false,
