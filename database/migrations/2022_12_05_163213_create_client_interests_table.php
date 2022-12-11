@@ -17,7 +17,6 @@ class CreateClientInterestsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('interest_id');
-            $table->timestamps();
         });
     }
 
