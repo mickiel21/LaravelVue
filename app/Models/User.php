@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function clientInterests(){
-        return $this->belongsToMany(Interest::class,'user_id','id')->withPivot(['client_interest'])->withTimestamps();
+        return $this->belongsToMany(Interest::class,'client_interests','user_id','interest_id')->withTimestamps();
     }
 
     public function clients(){

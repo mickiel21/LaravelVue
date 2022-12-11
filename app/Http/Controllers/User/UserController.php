@@ -24,10 +24,10 @@ class UserController extends Controller
 
     public function show($id) {
         try {
-           $user = User::with('clientInterests')->findOrFail($id);
+           $user = User::with(['clientInterests'])->findOrFail($id);
             return resolveResponse(__('client.fetch_success'),$user);
         }catch(\Exception $e) {
-            return rejectResponse(__('client.fetch_failed'), null);
+            return rejectResponse(__('client.fetch_failed'), $e->getMessage());
         }
     }
 
@@ -45,11 +45,13 @@ class UserController extends Controller
                 'created_by' => \Auth::user()->id,
             ]);
 
-            foreach($request->interests as $interest){
-                $user->clientInterests()->create([
-                    'interest_id' => $interest,
-                ]);
-            }
+            // foreach($request->interests as $interest){
+            //     $user->clientInterests()->attach([
+            //         'interest_id' => $interest,
+            //     ]);
+            // }
+
+            $user->clientInterests()->attach($request->interests);
            
           
             \DB::commit();
@@ -74,7 +76,9 @@ class UserController extends Controller
                 'role_id' => 2, 
                 'updated_by' => \Auth::user()->id
             ]);
-            
+            $user->clientInterests()->detach();
+
+            $user->clientInterests()->attach($request->interests);
             // foreach($request->interests as $interest){
             //     $user->clientInterests()->update([
             //         'interest_id' => $interest,

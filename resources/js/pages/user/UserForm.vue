@@ -256,7 +256,7 @@ export default {
         .then((response) => {
           this.user = response.data;
           const interest = response.data.client_interests.map(function (obj) {
-            return obj.interest_id;
+            return obj.id;
           });
           this.user.interests = interest;
         })

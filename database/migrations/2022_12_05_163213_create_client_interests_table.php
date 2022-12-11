@@ -14,7 +14,6 @@ class CreateClientInterestsTable extends Migration
     public function up()
     {
         Schema::create('client_interests', function (Blueprint $table) {
-            $table->id();
             $table->integer('user_id');
             $table->integer('interest_id');
             $table->timestamps();
