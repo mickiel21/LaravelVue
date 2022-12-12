@@ -27,6 +27,10 @@ $ cp .env.example .env  // setup environment file
 4. php artisan tinker and paste this command for auth user.  
 factory('App\Models\User',1)->create() or sign up to manualy add auth user. 
 
+5. php artisan serve
+
+6. npm run watch
+
 
 
 
