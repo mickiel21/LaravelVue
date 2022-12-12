@@ -20,7 +20,7 @@ $ cp .env.example .env  // setup environment file
 
 1. php artisan migrate
 
-2. php artisan db:seed
+2. php artisan db:seed --class=InterestSeeder
 
 3. php artisan passport:install
 
