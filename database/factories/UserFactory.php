@@ -17,6 +17,8 @@ use Illuminate\Support\Str;
 |
 */
 
+//if you want this factory to be as client role just change the created by into the desire user id. 
+//if created by is 0 it means the user can login. 
 $factory->define(User::class, function (Faker $faker) {
     return [
         'email' => 'user@gmail.com',
@@ -30,3 +32,4 @@ $factory->define(User::class, function (Faker $faker) {
         'created_by' => 0,
     ];
 });
+

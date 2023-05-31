@@ -20,12 +20,16 @@ $ cp .env.example .env  // setup environment file
 
 1. php artisan migrate
 
-2. php artisan db:seed
+2. php artisan db:seed --class=InterestSeeder
 
 3. php artisan passport:install
 
 4. php artisan tinker and paste this command for auth user.  
 factory('App\Models\User',1)->create() or sign up to manualy add auth user. 
+
+5. php artisan serve
+
+6. npm run watch
 
 
 
