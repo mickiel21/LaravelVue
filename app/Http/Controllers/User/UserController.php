@@ -14,8 +14,7 @@ class UserController extends Controller
   
 
     public function index() {
-
-        $userClient = User::with(['clients'])->where('created_by',Auth::user()->id,)->paginate(5);
+        $userClient = User::with(['clients'])->paginate(5);
         return resolveResponse(__('client.fetch_success'), $userClient);
 
         // $users = User::with(['clients','clientInterests'])->paginate(5);
