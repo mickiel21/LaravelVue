@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/miko/miko', function () {
+    return view('welcome');
+});
 
 Route::get('/{any}', function () {
     return view('master');
