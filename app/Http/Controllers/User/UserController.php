@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserRequest;
-
+use Auth;
 class UserController extends Controller
 {
   
 
     public function index() {
 
-        $userClient = User::with(['clients'])->where('created_by',\Auth::user()->id,)->paginate(5);
+        $userClient = User::with(['clients'])->where('created_by',Auth::user()->id,)->paginate(5);
         return resolveResponse(__('client.fetch_success'), $userClient);
 
         // $users = User::with(['clients','clientInterests'])->paginate(5);
